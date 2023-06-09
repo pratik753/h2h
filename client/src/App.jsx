@@ -11,63 +11,58 @@ import PastPrescription from "./pages/PastPrescription.jsx";
 
 import ProductPage from "./pages/ProductPage.jsx";
 import DealerPage from "./pages/DealerPage.jsx";
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {authActions} from './../src/store/AllStatus'
-import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from "./../src/store/AllStatus";
+import { useSelector, useDispatch } from "react-redux";
+import { createRoot } from "react-dom/client";
+
+import Orders from "./pages/Orders.jsx";
 function App() {
-  //const [check,checkrouter]=useState(0);
-  const dispatch=useDispatch();
-  const  token=localStorage.getItem("token");
-  const position=localStorage.getItem("position");
-  const navigate=useNavigate();
-  //req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('token'))}`;
+  const dispatch = useDispatch();
 
-  console.log(position);
-  console.log(localStorage.getItem("pos"));
-  if(localStorage.getItem("pos")==="1")
-  {
-    //localStorage.setItem("pos","true");
-    
-     //navigate('/Prescription');
-     dispatch(authActions.isLogin(0));
+  if (localStorage.getItem("pos") === "1") {
+    dispatch(authActions.isLogin(0));
   }
-  if(localStorage.getItem("pos")==="2")
-  {
+  if (localStorage.getItem("pos") === "2") {
     dispatch(authActions.isLogin(1));
-  } 
-
- //  const check=useSelector();
-   const check=useSelector((state) => state.auth.loginvalue);
-  console.log("bye",check);
+  }
+  const check = useSelector((state) => state.auth.loginvalue);
   return (
     <ShoppingCartProvider>
       <Navbar />
-      <switch>
       <Routes>
         <Route path="/" element={<Home />} />
-        {check===0 ?<Route path="/prescription" element={<Prescription/>}
-        />: <Route path="/prescription" element={<Home/>}/>}{/* only for doctor and nurse*/}
-       
+        {check === 0 ? (
+          <Route path="/prescription" element={<Prescription />} />
+        ) : (
+          <Route path="/prescription" element={<Home />} />
+        )}
+        {/* only for doctor and nurse*/}
+
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
-        {check===1 ? <Route path="/PastPrescription" element={<PastPrescription />} />:
+        <Route path="/PastPrescription" element={<Orders />} />
+        {check === 1 ? (
+          <Route path="/PastPrescription" element={<Orders />} />
+        ) : (
+          <Route path="/PastPrescription" element={<Home />} />
+        )}
+        {/* only for dealer*/}
+        {check == 0 ? (
+          <Route path="/ProductPage/:id" element={<ProductPage />} />
+        ) : (
+          <Route path="/ProductPage" element={<Home />} />
+        )}
+        {/* only for doctor and nurse*/}
 
-<Route path="/PastPrescription" element={<Home/>}/>
-          
-          }{/* only for dealer*/}
-        {check==0 ? <Route path="/ProductPage/:id" element={<ProductPage />}/>:
-        <Route path="/ProductPage" element={<Home/>}/>
-        }{/* only for doctor and nurse*/}
-
-
-       {check==1 ?<Route path="/dealer" element={<DealerPage />} />:
-        <Route path="/dealer" element={<Home/>}/>
-}
+        {check == 1 ? (
+          <Route path="/dealer" element={<DealerPage />} />
+        ) : (
+          <Route path="/dealer" element={<Home />} />
+        )}
         {/* <Route path="/SignUp" element={<CompanyNameSelect />} /> */}
       </Routes>
-      </switch>
+
       <Footer />
     </ShoppingCartProvider>
   );

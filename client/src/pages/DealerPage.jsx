@@ -1,11 +1,10 @@
-import React from 'react'
-import DealerAddProduct from '../components/DealerAddProduct'
-import List from '../components/List'
-import { useState } from 'react'
+import React from "react";
+import DealerAddProduct from "../components/DealerAddProduct";
+import List from "../components/List";
+import { useState } from "react";
 
 function DealerPage() {
-  const [Clicked, setClicked] = useState(false)
-
+  const [Clicked, setClicked] = useState(false);
 
   return (
     <div>
@@ -25,7 +24,7 @@ function DealerPage() {
         ) : (
           <button
             onClick={() => setClicked(!Clicked)}
-            class="text-white justify-self-end inline-block w-56 text-lg px-2.5 py-3 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg    dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
+            className="text-white justify-self-end inline-block w-56 text-lg px-2.5 py-3 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg    dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
             type="button"
           >
             Add Product
@@ -39,5 +38,4 @@ function DealerPage() {
   );
 }
 
-export default DealerPage
-
+export default DealerPage;

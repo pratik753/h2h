@@ -1,5 +1,6 @@
 import {NavLink} from 'react-router-dom'
-import p4 from '../../public/p4.jpg'
+import p4 from '../../public/p4.jpg';
+// import p4 from '../../public/p4.jpg'
 import Cta from '../components/Cta'
 
 function Home() {

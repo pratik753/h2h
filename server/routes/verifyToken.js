@@ -16,45 +16,34 @@
 // }
 
 // module.exports = verify;
-const AppError = require('./AppError');
-const catchAsync = require('./catchAsync');
+const AppError = require("./AppError");
+const catchAsync = require("./catchAsync");
 const jwt = require("jsonwebtoken");
 
-const verifyToken =  catchAsync(async (req, res, next) =>{
-
-
+const verifyToken = catchAsync(async (req, res, next) => {
   //1)get token
-
-
-
-
 
   //2)validate token
 
-
-
-
-
   //3)
-  console.log(req.headers);
+  // console.log(req.headers);
   const authHeader = req.headers.authorization;
-  console.log(authHeader);
+  // console.log(authHeader);
   if (authHeader) {
     const token = authHeader.split(" ")[1];
-    console.log("value of ",token);
-    let secret="darshillashkari009";
+    // console.log("value of ", token);
+    let secret = "darshillashkari009";
     jwt.verify(token, secret, (err, user) => {
-      if (err) 
-      {
-        return next(new AppError('Token is not valid!', 403));
+      if (err) {
+        return next(new AppError("Token is not valid!", 403));
       }
-      req.user =user;
-      console.log(user);
+      req.user = user;
+      // console.log(user);
       next();
     });
   } else {
     console.log("hi");
-    return next(new AppError('User not authenticated', 403));
+    return next(new AppError("User not authenticated", 403));
   }
 });
 
@@ -69,29 +58,28 @@ const verifyTokenAndAuthorization = (req, res, next) => {
 };
 
 const verifyTokenAndAdmin = (req, res, next) => {
-  verifyToken(catchAsync(async(req, res,next)=> {
-    console.log(user);
-    if (req.user.isAdmin) {
-      next();
-    } else {
-      res.status(403).json("You are not alowed to do that!");
-    }
-  }));
+  verifyToken(
+    catchAsync(async (req, res, next) => {
+      console.log(user);
+      if (req.user.isAdmin) {
+        next();
+      } else {
+        res.status(403).json("You are not alowed to do that!");
+      }
+    })
+  );
 };
-const restrictTo=(...roles)=>{
-  return(catchAsync(async(req,res,next)=>{
-    console.log("bye bye ",roles);
-    console.log("fuckkk",req.user.position);
-    if(!roles.includes(req.user.position))
-    {
-      return next(new AppError('You are not allowed to do that', 403));
+const restrictTo = (...roles) => {
+  return catchAsync(async (req, res, next) => {
+    if (!roles.includes(req.user.position)) {
+      return next(new AppError("You are not allowed to do that", 403));
     }
     next();
-  }
-))}
+  });
+};
 module.exports = {
   verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-  restrictTo
+  restrictTo,
 };

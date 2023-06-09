@@ -1,17 +1,17 @@
 // import user from '../assets/user.png'
-import { useState } from 'react'
-import logo from '../assets/logo.png'
-import {NavLink} from 'react-router-dom'
+import { useState } from "react";
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import Cart from '../pages/Cart'
+import Cart from "../pages/Cart";
 
 function Navbar() {
-    const [Active, setActive] = useState(true)
+  const [Active, setActive] = useState(true);
 
-    const showMenu = () =>{
-        setActive(!Active)
-    } 
-  
+  const showMenu = () => {
+    setActive(!Active);
+  };
+
   return (
     <div>
       <nav className="bg-white border-b-2  px-2 sm:px-4  py-2.5 rounded fixed-top sticky top-0  dark:bg-gray-900 ">
@@ -24,7 +24,7 @@ function Navbar() {
             />
           </a>
           <div className="flex items-center md:order-2">
-            <NavLink
+            <Link
               to="/login"
               type="button"
               className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -39,7 +39,7 @@ function Navbar() {
                 src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                 alt="user photo"
               />
-            </NavLink>
+            </Link>
             <Cart />
 
             <button
@@ -59,7 +59,7 @@ function Navbar() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                   clinkp-rule="evenodd"
                 ></path>
@@ -75,51 +75,38 @@ function Navbar() {
             id="mobile-menu-2"
           >
             <ul className="flex flex-col p-4 mt-4  bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <NavLink to="/">
-                <a
+              <Link to="/">
+                <div
                   className="block py-2 pr-4 pl-3 text-lg text-white bg-indigo-700 rounded md:bg-transparent md:text-indigo-700 md:p-0 dark:text-white"
-                  aria-current="page "
                   onClick={showMenu}
                 >
-                  About
-                </a>
-              </NavLink>
-              {/* <NavLink to="/about">
-                <a
-                  className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  onClick={showMenu}
-                >
-                  About
-                </a>
-              </NavLink> */}
-
-              <NavLink to="/Prescription">
-                <a
-                  href="#"
+                  Home
+                </div>
+              </Link>
+              <Link to="/Prescription">
+                <div
                   className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   onClick={showMenu}
                 >
                   Products
-                </a>
-              </NavLink>
-              <NavLink to="/PastPrescription">
-                <a
-                  href="#"
+                </div>
+              </Link>
+              <Link to="/PastPrescription">
+                <div
                   className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   onClick={showMenu}
-                  to="/pastprescription"
                 >
                   Past Prescription
-                </a>
-              </NavLink>
-
-              <a
-                href="#contact"
-                className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                onClick={showMenu}
-              >
-                Contact Us
-              </a>
+                </div>
+              </Link>
+              <Link to="/about">
+                <div
+                  className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  onClick={showMenu}
+                >
+                  About
+                </div>
+              </Link>
             </ul>
           </div>
           <div
@@ -129,47 +116,32 @@ function Navbar() {
             id="mobile-menu-2"
           >
             <ul className="flex flex-col p-4 mt-4  bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <NavLink to="/">
-                <a
-                  href="#"
+              <Link to="/">
+                <div
                   className="block py-2 pr-4 pl-3 text-lg text-white bg-indigo-700 rounded md:bg-transparent md:text-indigo-500 md:p-0 dark:text-white"
                   aria-current="page"
                 >
-                  About
-                </a>
-              </NavLink>
-              {/* <NavLink to="/about">
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  About
-                </a>
-              </NavLink> */}
-
-              <NavLink to="/prescription">
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                  Home
+                </div>
+              </Link>
+              <Link to="/prescription">
+                <div className="block py-2 pr-4 pl-3 text-gray-700 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                   Products
-                </a>
-              </NavLink>
-              <NavLink to="/PastPrescription">
-                <a
-                  href="#"
+                </div>
+              </Link>
+              <Link to="/PastPrescription">
+                <div
                   className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   to="/pastprescription"
                 >
                   Past Prescription
-                </a>
-              </NavLink>
-              <a
-                href="#contact"
-                className="block py-2 pr-4 pl-3 text-gray-700 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Contact Us
-              </a>
+                </div>
+              </Link>
+              <Link to="/about">
+                <div className="block py-2 pr-4 pl-3 text-gray-700 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  About
+                </div>
+              </Link>
             </ul>
           </div>
         </div>
@@ -178,4 +150,4 @@ function Navbar() {
   );
 }
 
-export default Navbar
+export default Navbar;
