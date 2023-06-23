@@ -36,7 +36,6 @@ const Product = () => {
       foundObject.quantity = quantity + 1;
     }
     setProduct(array);
-    console.log(array);
   }
   function f3(id) {
     dispatch(decrementQuantity(id));
@@ -97,6 +96,12 @@ const Product = () => {
             </p>
             <p className="flex flex-end text-lg font-medium  text-gray-800">
               ₹{expense.price}
+            </p>
+          </div>
+          <div className="flex">
+            <p className="flex-1 text-lg font-medium  text-gray-800">Price:</p>
+            <p className="flex flex-end text-lg font-medium  text-gray-800">
+              ₹{expense.price * 10}
             </p>
           </div>
           <div className="mt-2 w-full">

@@ -11,7 +11,8 @@ function Navbar() {
   const showMenu = () => {
     setActive(!Active);
   };
-
+  const proflie = localStorage.getItem("position");
+  console.log(proflie, "proflie");
   return (
     <div>
       <nav className="bg-white border-b-2  px-2 sm:px-4  py-2.5 rounded fixed-top sticky top-0  dark:bg-gray-900 ">
@@ -40,8 +41,10 @@ function Navbar() {
                 alt="user photo"
               />
             </Link>
+            <div className="mx-3  text-base font-bold  text-gray-500 ">
+              {proflie}
+            </div>
             <Cart />
-
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -83,7 +86,7 @@ function Navbar() {
                   Home
                 </div>
               </Link>
-              <Link to="/Prescription">
+              <Link to="/ProductPage">
                 <div
                   className="block py-2 pr-4 pl-3 text-lg text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   onClick={showMenu}
@@ -124,7 +127,7 @@ function Navbar() {
                   Home
                 </div>
               </Link>
-              <Link to="/prescription">
+              <Link to="/ProductPage">
                 <div className="block py-2 pr-4 pl-3 text-gray-700 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                   Products
                 </div>

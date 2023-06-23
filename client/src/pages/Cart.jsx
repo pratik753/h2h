@@ -1,15 +1,15 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import FileBase from "react-file-base64";
-import ShowModal from './ShowModal';
-import {addDoctordata} from '../components/CartReducer'
-import axios from 'axios';
+import ShowModal from "./ShowModal";
+import { addDoctordata } from "../components/CartReducer";
+import axios from "axios";
 const products = [
   {
     id: 1,
@@ -63,191 +63,126 @@ const products = [
 ];
 
 export default function Cart() {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
   const [isOpen, setisOpen] = useState(false);
-  const [value,setValue]=useState([]);
-  const[length,setlength]=useState(0);
-   const cart=useSelector((state)=>state.cartReducer)
-   const price = useSelector((state) => state.cartReducer);
-   const [postData, setPostData] = useState({
+  const [value, setValue] = useState([]);
+  const [length, setlength] = useState(0);
+  const cart = useSelector((state) => state.cartReducer);
+  const price = useSelector((state) => state.cartReducer);
+  const [postData, setPostData] = useState({
     title: "",
     descriptio: "",
     price: "",
     image_name: "",
-    per:"",
-     quantity:""
-    });
+    per: "",
+    quantity: "",
+  });
 
-    function f1()
-    {
-      setOpen(!open);
-    
-     /* var p=[];
-      for(const key in cart)
-      {
-          console.log(cart[key]);
-          let n=cart[key].length;
-    
-          for(let m=0;m<n;m++)
-          {
-              console.log(cart[key][m]);
-              p[m]=cart[key][m];
-          }
-          localStorage.setItem("fl","4")
-        }
-        if(localStorage.getItem("fl")==="4")
-        {
-          console.log("hello");
-         // setValue(p);
-         localStorage.removeItem("fl");
-        }*/
-    }
-  
-  //console.log(cart);
-  function f2()
-  {
-     //console.log(" hello from cartsj");
-     setisOpen(!isOpen) 
-       //
-       //console.log("hi from",flag);
-
-      localStorage.setItem("fp","1")
-      setlength(cart[0].length) 
+  function f1() {
+    setOpen(!open);
   }
-  
-  if(localStorage.getItem("fp")==="1")
-  {
-    let z=[];
-    console.log(cart.length);
-    
-    let q=0;
-    for(const key in cart)
-    {
+  function f2() {
+    setisOpen(!isOpen);
+    localStorage.setItem("fp", "1");
+    setlength(cart[0].length);
+  }
 
-      console.log(cart[key]);
-      for(let p=0;p<cart[key].length;p++)
-      {
+  if (localStorage.getItem("fp") === "1") {
+    let z = [];
+    let q = 0;
+    for (const key in cart) {
+      for (let p = 0; p < cart[key].length; p++) {
         console.log(cart[key][p]);
-        z[q++]=cart[key][p];
+        z[q++] = cart[key][p];
       }
     }
-    //console.log(" weloc ",z);
     setValue(z);
-    setlength(z.length) 
-       // console.log("hi cart",cart);
-        localStorage.removeItem("fp");
+    setlength(z.length);
+    localStorage.removeItem("fp");
   }
-  console.log(value);
-  const [modal,setModal]=useState(0);
-  function f6()
-  {
+  const [modal, setModal] = useState(0);
+  function f6() {
     setModal(1);
   }
-  function f7(base64)
-  {
-   // console.log(cart);
-   console.log(base64);
-   //setPostData({image_name: base64 })
-   dispatch(addDoctordata(base64));
-   localStorage.setItem("fp","3");
+  function f7(base64) {
+    dispatch(addDoctordata(base64));
+    localStorage.setItem("fp", "3");
   }
-  if(localStorage.getItem("fp")==="3")
-  {
-    let z=[];
-    console.log(cart.length);
-    
-    let q=0;
-    for(const key in cart)
-    {
-
-      console.log(cart[key]);
-      for(let p=0;p<cart[key].length;p++)
-      {
-        console.log(cart[key][p]);
-        z[q++]=cart[key][p];
+  if (localStorage.getItem("fp") === "3") {
+    let z = [];
+    let q = 0;
+    for (const key in cart) {
+      for (let p = 0; p < cart[key].length; p++) {
+        z[q++] = cart[key][p];
       }
     }
-    //console.log(" weloc ",z);
     setValue(z);
-    setlength(z.length) 
-       // console.log("hi cart",cart);
-        localStorage.removeItem("fp");
+    setlength(z.length);
+    localStorage.removeItem("fp");
   }
 
-  function f8()
-  {
-    //console.log(value);
-    console.log(price.price);
-    let p=value;
-    console.log(" hi ",p);
-    var currentdate = new Date(); 
-var datetime = "Last Sync: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
-                let m=[];
-    for(let i=0;i<value.length;i++) 
-    {
-      //value[i].push({date_time:datetime});
-      //Object.assign(p[i],{"date_time":datetime});
-      console.log(p[i]);
-      let pr="";
-       if(p[i].price===undefined)
-       {
-         pr="";
-       }
-       else
-       {
-         pr=p[i].price;
-       } 
-      let obj2 = {...p[i], date_time: datetime,price:price.price,pricing:pr};
+  function f8() {
+    let p = value;
+    var currentdate = new Date();
+    var datetime =
+      "Last Sync: " +
+      currentdate.getDate() +
+      "/" +
+      (currentdate.getMonth() + 1) +
+      "/" +
+      currentdate.getFullYear() +
+      " @ " +
+      currentdate.getHours() +
+      ":" +
+      currentdate.getMinutes() +
+      ":" +
+      currentdate.getSeconds();
+    let m = [];
+    for (let i = 0; i < value.length; i++) {
+      let pr = "";
+      if (p[i].price === undefined) {
+        pr = "";
+      } else {
+        pr = p[i].price;
+      }
+      let obj2 = {
+        ...p[i],
+        date_time: datetime,
+        price: price.price,
+        pricing: pr,
+      };
       m.push(obj2);
+      console.log(obj2, "data");
     }
-    console.log(m);
-    console.log(postData);
     const API = axios.create({ baseURL: "http://localhost:8800" });
 
     API.interceptors.request.use((req) => {
-      //console.log(JSON.parse(localStorage.getItem("token")));
       if (localStorage.getItem("token")) {
-        req.headers.Authorization = `Bearer ${
-          localStorage.getItem("token")
-        }`;
-        console.log("hello token");
+        req.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
       }
-      console.log("bye ",req.headers.Authorization);
-      
       return req;
     });
-    API.post("/api/products/postdoctor",m);
+    API.post("/api/products/postdoctor", m);
   }
   return (
     <>
       {!isOpen ? (
-        <div
-          className="ml-4 flow-root lg:ml-6 cursor-pointer"
-         
-          onClick={f2}
-        >
+        <div className="ml-4 flow-root lg:ml-6 cursor-pointer" onClick={f2}>
           <div className="group -m-2 flex items-center p-2">
             <ShoppingBagIcon
               className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
               aria-hidden="true"
             />
-            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800" >
-            
-            </span>
+            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"></span>
             <span className="sr-only">items in cart, view bag</span>
           </div>
         </div>
       ) : (
-       <Transition.Root show={open} as={Fragment}>
+        <Transition.Root show={open} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={setOpen}>
             <Transition.Child
-              onClick={() =>f1}
+              onClick={() => f1}
               as={Fragment}
               enter="ease-in-out duration-500"
               enterFrom="opacity-0"
@@ -299,82 +234,86 @@ var datetime = "Last Sync: " + currentdate.getDate() + "/"
                                 role="list"
                                 className="-my-6 divide-y divide-gray-200"
                               >
-                                {value.map((product) => (
-                                  product.quantity!=0 && product.title!=="" &&<li key={product.id} className="flex py-6">
-                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                      <img
-                                        src={product.image_name}
-                                       
-                                        className="h-full w-full object-cover object-center"
-                                      />
-                                    </div>
-
-                                    <div className="ml-4 flex flex-1 flex-col">
-                                      <div>
-                                        <div className="flex justify-between text-base font-medium text-gray-900">
-                                          <h3>
-                                            <a href={product.href}>
-                                              {product.title}
-                                            </a>
-                                          </h3>
-                                          <p className="ml-4">
-                                            {product.price}
-                                          </p>
+                                {value.map(
+                                  (product) =>
+                                    product.quantity != 0 &&
+                                    product.title !== "" && (
+                                      <li
+                                        key={product.id}
+                                        className="flex py-6"
+                                      >
+                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                          <img
+                                            src={product.image_name}
+                                            className="h-full w-full object-cover object-center"
+                                          />
                                         </div>
-                                        <p className="mt-1 text-sm text-gray-500">
-                                         
-                                        </p>
-                                      </div>
-                                      <div className="flex flex-1 items-end justify-between text-sm">
-                                        <p className="text-gray-500">
-                                          Qty {product.quantity}
-                                        </p>
 
-                                        <div className="flex">
-                                         
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </li>
-                                ))}
-                                {value.map((product) => (
-                                  product.quantity!=0 && product.title==="" &&<li key={product.id} className="flex py-6">
-                                    <div className="h-28 w-50 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                      <img
-                                        src={product.image_name}
-                                       
-                                        className="h-full w-full object-cover object-center"
-                                      />
-                                    </div>
+                                        <div className="ml-4 flex flex-1 flex-col">
+                                          <div>
+                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                              <h3>
+                                                <a href={product.href}>
+                                                  {product.title}
+                                                </a>
+                                              </h3>
+                                              <p className="ml-4">
+                                                {product.price}
+                                              </p>
+                                            </div>
+                                            <p className="mt-1 text-sm text-gray-500"></p>
+                                          </div>
+                                          <div className="flex flex-1 items-end justify-between text-sm">
+                                            <p className="text-gray-500">
+                                              Qty {product.quantity}
+                                            </p>
 
-                                    <div className="ml-4 flex flex-1 flex-col">
-                                      <div>
-                                        <div className="flex justify-between text-base font-medium text-gray-900">
-                                          <h3>
-                                            <a href={product.href}>
-                                              {product.title}
-                                            </a>
-                                          </h3>
-                                          <p className="ml-4">
-                                            {product.price}
-                                          </p>
+                                            <div className="flex"></div>
+                                          </div>
                                         </div>
-                                        <p className="mt-1 text-sm text-gray-500">
-                                         
-                                        </p>
-                                      </div>
-                                      <div className="flex flex-1 items-end justify-between text-sm">
-                                        <p className="text-gray-500">
-                                          {product.quantity}
-                                        </p>
+                                      </li>
+                                    )
+                                )}
+                                {value.map(
+                                  (product) =>
+                                    product.quantity != 0 &&
+                                    product.title === "" && (
+                                      <li
+                                        key={product.id}
+                                        className="flex py-6"
+                                      >
+                                        <div className="h-28 w-50 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                          <img
+                                            src={product.image_name}
+                                            className="h-full w-full object-cover object-center"
+                                          />
+                                        </div>
 
-                                        <div className="flex">
-                                         
+                                        <div className="ml-4 flex flex-1 flex-col">
+                                          <div>
+                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                              <h3>
+                                                <a href={product.href}>
+                                                  {product.title}
+                                                </a>
+                                              </h3>
+                                              <p className="ml-4">
+                                                {product.price}
+                                              </p>
+                                            </div>
+                                            <p className="mt-1 text-sm text-gray-500"></p>
+                                          </div>
+                                          <div className="flex flex-1 items-end justify-between text-sm">
+                                            <p className="text-gray-500">
+                                              {product.quantity}
+                                            </p>
+
+                                            <div className="flex"></div>
+                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </li>
-                                ))}
+                                      </li>
+                                    )
+                                )}
                               </ul>
                             </div>
                           </div>
@@ -389,31 +328,29 @@ var datetime = "Last Sync: " + currentdate.getDate() + "/"
                             UPLOAD PRESCRIPTION
                           </p>
                           <div className="mt-6">
-                          <div className="flex">
-            <FileBase
-            type="file"
-            multiple={false}
-            onDone={({ base64 }) =>
-              f7(base64)
-            }
-            lable="Upload"
-            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-          />
-          
-            </div>
-            <br></br>
-            <div className="mt-6">
-                            <a
-                              href="#"
-                              className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                              onClick={f8}
-                            >
-                             SUBMIT
-                            </a>
+                            <div className="flex">
+                              <FileBase
+                                type="file"
+                                multiple={false}
+                                onDone={({ base64 }) => f7(base64)}
+                                lable="Upload"
+                                className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                              />
+                            </div>
+                            <br></br>
+                            <NavLink to="/payment">
+                              <div className="mt-6">
+                                <a
+                                  // href="#"
+                                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                  onClick={f8}
+                                >
+                                  SUBMIT
+                                </a>
+                              </div>
+                            </NavLink>
                           </div>
-                            
-                          </div>
-                         
+
                           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                             <p>
                               or

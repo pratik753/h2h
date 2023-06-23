@@ -16,6 +16,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { createRoot } from "react-dom/client";
 
 import Orders from "./pages/Orders.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
+import PaymentAfter from "./pages/PaymentAfter";
 function App() {
   const dispatch = useDispatch();
 
@@ -32,12 +34,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {check === 0 ? (
-          <Route path="/prescription" element={<Prescription />} />
+          <Route path="/ProductPage" element={<Prescription />} />
         ) : (
-          <Route path="/prescription" element={<Home />} />
+          <Route path="/ProductPage" element={<Home />} />
         )}
         {/* only for doctor and nurse*/}
-
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
@@ -61,8 +62,9 @@ function App() {
           <Route path="/dealer" element={<Home />} />
         )}
         {/* <Route path="/SignUp" element={<CompanyNameSelect />} /> */}
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/successful" element={<PaymentAfter />} />
       </Routes>
-
       <Footer />
     </ShoppingCartProvider>
   );

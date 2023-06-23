@@ -5,7 +5,6 @@ const Orders = () => {
   const [totalPrice, setTotalPrice] = React.useState(0);
   const getOrder = async () => {
     const res = await orderAll();
-    console.log(res);
     setOrder(res.data);
     let totalPriceR = 0;
     for (let index = 0; index < res.data.length; index++) {
@@ -38,7 +37,7 @@ const Orders = () => {
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {/* <Product /> */}
             {order.length > 0 &&
-              order.map((data, index) => {
+              order.reverse().map((data, index) => {
                 return (
                   <div key={index}>
                     <div className="flex mt-2 ">

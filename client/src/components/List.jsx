@@ -112,7 +112,7 @@ function List() {
     showImages(false);
   }
   // console.log("hi ",product)
-  return !product.length ? (
+  return !product ? (
     <CircularProgress />
   ) : modal == false ? (
     <div>
